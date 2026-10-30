@@ -79,7 +79,10 @@ export function Experience({ games, staticMode }: { games: ExperienceGame[]; sta
       gsap.registerPlugin(ScrollTrigger);
       const lenis = new LenisCtor({ lerp: 0.09, wheelMultiplier: 0.9 });
       lenisRef.current = lenis;
-      lenis.on("scroll", ScrollTrigger.update);
+      lenis.on("scroll", (l) => {
+        ScrollTrigger.update();
+        expState.vel = l.velocity;
+      });
       const tick = (t: number) => lenis.raf(t * 1000);
       gsap.ticker.add(tick);
       gsap.ticker.lagSmoothing(0);
