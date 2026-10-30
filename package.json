@@ -1,0 +1,43 @@
+{
+  "name": "pixelporto",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "db:seed:generate": "node scripts/generate-seed.mjs",
+    "db:covers": "node --env-file=.env.local scripts/upload-covers.mjs",
+    "doctor": "node --env-file-if-exists=.env.local scripts/doctor.mjs",
+    "db:types": "node scripts/gen-types.mjs",
+    "db:start": "supabase start",
+    "db:reset": "supabase db reset"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.118.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11",
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "^16.4.2",
+    "supabase": "^2.121.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

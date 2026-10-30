@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #14070a;
+  --color-panel: #1f0b10;
+  --color-panel2: #2e1218;
+  --color-line: #54212d;
+  --color-fg: #fff1f2;
+  --color-muted: #dcaab4;
+  --color-brand: #a3e635;
+  --color-brand-strong: #65a30d;
+  --color-gold: #d9f99d;
+  --color-danger: #ff7b7b;
+  --color-ok: #4ade80;
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+html { color-scheme: dark; scroll-behavior: smooth; }
+body { background: var(--color-ink); color: var(--color-fg); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+:focus-visible { outline: 3px solid var(--color-gold); outline-offset: 2px; border-radius: 4px; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@layer components {
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .6rem; padding: .6rem 1.1rem; font-weight: 700; font-size: .95rem; transition: background .15s, transform .15s, border-color .15s; cursor: pointer; border: 1px solid transparent; text-align: center; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary { background: var(--color-brand); color: #1a2e05; }
+.btn-primary:hover:not(:disabled) { background: #bef264; }
+.btn-ghost { background: transparent; color: var(--color-fg); border-color: var(--color-line); }
+.btn-ghost:hover:not(:disabled) { background: var(--color-panel2); border-color: var(--color-muted); }
+.btn-danger { background: transparent; color: var(--color-danger); border-color: color-mix(in oklab, var(--color-danger) 50%, transparent); }
+.btn-danger:hover:not(:disabled) { background: color-mix(in oklab, var(--color-danger) 15%, transparent); }
+.btn-sm { padding: .35rem .7rem; font-size: .85rem; }
+
+.input { width: 100%; background: var(--color-ink); border: 1px solid var(--color-line); border-radius: .6rem; padding: .6rem .8rem; color: var(--color-fg); min-height: 2.75rem; }
+.input::placeholder { color: #bb8d97; }
+.input:focus { border-color: var(--color-brand); }
+.input[aria-invalid="true"] { border-color: var(--color-danger); }
+
+.card { background: var(--color-panel); border: 1px solid var(--color-line); border-radius: 1rem; }
+
+.sr-only-focusable:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
