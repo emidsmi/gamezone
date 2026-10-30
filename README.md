@@ -158,6 +158,18 @@ Constraints e índices relevantes: preços ≥ 0, desconto 1–95%, `ends_at > s
 | reviews | leitura | cria/edita **somente se comprou o jogo** (`library_items`), apaga as próprias | apaga qualquer |
 | storage `game-media` | leitura pública | — | upload/edição/remoção |
 
+## Home 3D de rolagem (branch `feat/redesign-3d`)
+
+A página inicial (`/`) é uma experiência de rolagem com **6 jogos em destaque** (Gravitron GP, Fazenda Lua Nova, Marés de Guerra, Casa dos Espelhos Cegos, A Trilha dos Vagalumes, Rali das Dunas Vermelhas). Cada um ocupa a tela inteira: cena 3D à esquerda, título, gêneros, descrição, preço e **COMPRAR** à direita. Depois dos seis, um carrossel estilo Netflix leva aos demais; a loja clássica continua em `/loja`.
+
+- Stack: React Three Fiber + drei + postprocessing, GSAP ScrollTrigger + Lenis; um único `<Canvas>` fixo, carregado sob demanda.
+- Tudo é procedural (sem arquivos 3D externos; ver [docs/CREDITOS.md](docs/CREDITOS.md)). Os jogos vêm do mesmo catálogo (Supabase ou modo estático); a lista e a ordem estão em `src/config/featured.ts`.
+- Fallbacks: sem WebGL ou com `prefers-reduced-motion` aparecem seções planas com a arte do jogo. `?q=low` / `?q=high` força a qualidade.
+- Documentos: [auditoria](docs/AUDITORIA.md), [storyboard](docs/STORYBOARD.md), [performance](docs/PERFORMANCE.md).
+- Agentes de apoio em `.claude/agents/`.
+
+Limitações honestas: visual estilizado (não fotorrealista); FPS/Lighthouse reais não medidos (só havia WebGL por software); em modo estático COMPRAR leva à página do jogo, e a compra que registra pedido exige Supabase configurado (não verificada aqui).
+
 ## Entrega parcial: pré-visualização sem banco (modo estático)
 
 Sem nenhuma variável de ambiente, o site roda em **modo estático**: usa os 41 jogos, avaliações e capas SVG embutidos no projeto (`src/data/static/catalog.json` e `public/media`), sem Supabase. Home com hero e carrosséis, catálogo com busca/filtros/ordenação e páginas dos jogos funcionam; carrinho, pagamento, biblioteca, pedidos e admin levam a uma página "faz parte da versão completa".
