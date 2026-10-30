@@ -8,7 +8,8 @@ import { Logo } from "@/components/Logo";
 import { DemoSwitch } from "@/components/DemoSwitch";
 
 const NAV = [
-  { href: "/", label: "Loja" },
+  { href: "/", label: "Início" },
+  { href: "/loja", label: "Loja" },
   { href: "/catalogo", label: "Catálogo" },
   { href: "/catalogo?promo=1", label: "Promoções" },
   { href: "/catalogo?free=1", label: "Grátis" },

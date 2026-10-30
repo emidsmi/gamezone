@@ -27,8 +27,8 @@ async function payWithCard(page: Page, number: string) {
   await page.getByRole("button", { name: /Pagar/ }).click();
 }
 
-test("home abre sem login, mostra o usuário demo e os carrosséis", async ({ page }) => {
-  await page.goto("/");
+test("loja clássica (/loja) abre sem login, mostra o usuário demo e os carrosséis", async ({ page }) => {
+  await page.goto("/loja");
   await expect(page.getByRole("link", { name: "Entrar" })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Criar conta" })).toHaveCount(0);
   await expect(page.getByText("Jogador Demo").first()).toBeVisible();
