@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { LocalOrderDetail } from "@/components/local/LocalShop";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireUser } from "@/data/auth";
@@ -10,6 +12,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 export const metadata: Metadata = { title: "Pedido" };
 
 export default async function OrderPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ novo?: string }> }) {
+  if (isStaticMode()) return <LocalOrderDetail id={(await params).id} />;
   const { id } = await params;
   const { novo } = await searchParams;
   await requireUser(`/pedidos/${id}`);

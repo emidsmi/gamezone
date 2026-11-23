@@ -74,3 +74,10 @@ export function staticHome(): HomeData {
     error: null,
   };
 }
+
+/** Dados mínimos de todos os jogos, usados pelo carrinho/desejos locais (modo estático). */
+export const staticLiteGames = () =>
+  catalog.games.map((g) => ({
+    id: g.id, slug: g.slug, title: g.title, studio: g.studio, category_name: g.category_name, cover_path: g.cover_path,
+    price_cents: g.price_cents, final_price_cents: g.final_price_cents, discount_percent: g.discount_percent,
+  }));

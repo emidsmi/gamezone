@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { LocalOrders } from "@/components/local/LocalShop";
 import Link from "next/link";
 import { requireUser } from "@/data/auth";
 import { getOrders } from "@/data/user-data";
@@ -8,6 +10,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 export const metadata: Metadata = { title: "Meus pedidos" };
 
 export default async function OrdersPage() {
+  if (isStaticMode()) return <LocalOrders />;
   await requireUser("/pedidos");
   const orders = await getOrders();
 

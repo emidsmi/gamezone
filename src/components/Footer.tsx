@@ -19,7 +19,7 @@ export function Footer() {
         </nav>
         <div className="space-y-2 text-sm text-muted">
           <p className="font-bold text-fg">Projeto acadêmico</p>
-          <p>Entrega parcial: nesta pré-visualização o foco é o visual da loja. Pagamentos são simulados e todos os jogos, estúdios e capas são fictícios.</p>
+          <p>Projeto acadêmico: pagamentos são simulados (nenhum valor real é cobrado) e todos os jogos, estúdios e capas são fictícios. Carrinho, biblioteca e pedidos ficam salvos no seu navegador.</p>
         </div>
       </div>
       <p className="border-t border-line px-4 py-4 text-center text-xs text-muted">© 2026 GameZone Brasil · caso fictício de projeto acadêmico</p>

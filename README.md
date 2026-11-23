@@ -172,7 +172,7 @@ Limitações honestas: visual estilizado (não fotorrealista); FPS/Lighthouse re
 
 ## Entrega parcial: pré-visualização sem banco (modo estático)
 
-Sem nenhuma variável de ambiente, o site roda em **modo estático**: usa os 41 jogos, avaliações e capas SVG embutidos no projeto (`src/data/static/catalog.json` e `public/media`), sem Supabase. Home com hero e carrosséis, catálogo com busca/filtros/ordenação e páginas dos jogos funcionam; carrinho, pagamento, biblioteca, pedidos e admin levam a uma página "faz parte da versão completa".
+Sem nenhuma variável de ambiente, o site roda em **modo estático**: usa os 41 jogos, avaliações e capas SVG embutidos no projeto (`src/data/static/catalog.json` e `public/media`), sem Supabase. Home 3D, loja, catálogo com busca/filtros/ordenação e páginas dos jogos funcionam, e o **fluxo de compra roda de ponta a ponta no navegador** (carrinho, desejos, pagamento simulado com aprovado/recusado/pendente, biblioteca com chave de ativação e download, pedidos), salvo no `localStorage` (`src/lib/local-store.ts`). Só contas de usuário e painel admin ficam para a versão com Supabase e levam a uma página "faz parte da versão completa".
 
 - Ativa sozinho quando `NEXT_PUBLIC_SUPABASE_URL` não existe (ou com `NEXT_PUBLIC_STATIC_MODE=true`).
 - **Publicar na Vercel sem configurar nada:** `npx vercel login` e depois `npx vercel --prod`; ou suba para o GitHub e importe o repositório na Vercel (Framework: Next.js, sem variáveis).

@@ -7,6 +7,8 @@ import { ageLabel } from "@/lib/format";
 import { PriceTag } from "@/components/PriceTag";
 import { Stars } from "@/components/Stars";
 import { isStaticMode } from "@/lib/static-mode";
+import { toLite } from "@/lib/lite";
+import { LocalBuyButton, LocalWishButton } from "@/components/local/LocalShop";
 
 export function GameCard({ game, flags, back = "/", fluid = false }: { game: CatalogGame; flags: UserFlags; back?: string; fluid?: boolean }) {
   const owned = flags.owned.includes(game.id);
@@ -42,7 +44,10 @@ export function GameCard({ game, flags, back = "/", fluid = false }: { game: Cat
         <div className="max-h-0 overflow-hidden transition-[max-height] duration-200 group-hover:max-h-28 group-focus-within:max-h-28">
           <div className="flex gap-2 border-t border-line p-2">
             {staticMode ? (
-              <Link href={`/jogo/${game.slug}`} className="btn btn-primary btn-sm flex-1">Ver detalhes</Link>
+              <>
+                <LocalBuyButton game={toLite(game)} className="btn btn-primary btn-sm flex-1" label={game.final_price_cents === 0 ? "Obter" : "Comprar"} />
+                <LocalWishButton gameId={game.id} className="btn btn-ghost btn-sm" compact />
+              </>
             ) : owned ? (
               <Link href="/biblioteca" className="btn btn-ghost btn-sm flex-1">Na biblioteca</Link>
             ) : inCart ? (

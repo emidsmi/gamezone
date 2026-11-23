@@ -18,6 +18,7 @@ export default async function HomePage() {
     title: g.title,
     short_description: g.short_description,
     category_name: g.category_name,
+    studio: g.studio,
     tag_names: g.tag_names,
     age_rating: g.age_rating,
     price_cents: g.price_cents,

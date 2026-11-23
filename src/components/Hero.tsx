@@ -7,6 +7,8 @@ import { addToCart } from "@/actions/shop";
 import { mediaUrl } from "@/lib/media";
 import { PriceTag } from "@/components/PriceTag";
 import { ageLabel } from "@/lib/format";
+import { toLite } from "@/lib/lite";
+import { LocalBuyButton } from "@/components/local/LocalShop";
 
 export function Hero({ games, owned, staticMode = false }: { games: CatalogGame[]; owned: string[]; staticMode?: boolean }) {
   const [index, setIndex] = useState(0);
@@ -53,7 +55,7 @@ export function Hero({ games, owned, staticMode = false }: { games: CatalogGame[
         <div className="flex flex-wrap items-center gap-3">
           <PriceTag game={game} size="lg" />
           {staticMode ? (
-            <Link href={`/jogo/${game.slug}`} className="btn btn-primary">Ver detalhes</Link>
+            <LocalBuyButton game={toLite(game)} label={game.final_price_cents === 0 ? "Obter grátis" : "Comprar agora"} />
           ) : isOwned ? (
             <Link href="/biblioteca" className="btn btn-primary">Jogar na biblioteca</Link>
           ) : (
@@ -64,7 +66,7 @@ export function Hero({ games, owned, staticMode = false }: { games: CatalogGame[
               <button className="btn btn-primary">{game.final_price_cents === 0 ? "Obter grátis" : "Comprar agora"}</button>
             </form>
           )}
-          {!staticMode && <Link href={`/jogo/${game.slug}`} className="btn btn-ghost bg-black/30">Ver detalhes</Link>}
+          {<Link href={`/jogo/${game.slug}`} className="btn btn-ghost bg-black/30">Ver detalhes</Link>}
         </div>
       </div>
 

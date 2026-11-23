@@ -12,6 +12,8 @@ import { Stars } from "@/components/Stars";
 import { ReviewForm } from "@/components/ReviewForm";
 import { Carousel } from "@/components/Carousel";
 import { isStaticMode } from "@/lib/static-mode";
+import { toLite } from "@/lib/lite";
+import { LocalBuyButton, LocalCartButton, LocalWishButton } from "@/components/local/LocalShop";
 import { GameCard } from "@/components/GameCard";
 
 type Req = { os?: string; cpu?: string; ram?: string; gpu?: string; storage?: string };
@@ -111,9 +113,10 @@ export default async function GamePage({ params }: { params: Promise<{ slug: str
           <div className="card space-y-4 p-4">
             <PriceTag game={game} size="lg" />
             {staticMode ? (
-              <div className="space-y-2">
-                <button type="button" disabled className="btn btn-primary w-full">{game.final_price_cents === 0 ? "Obter grátis" : "Comprar agora"}</button>
-                <p className="rounded-lg border border-gold/40 bg-gold/10 p-2 text-xs text-gold">Pré-visualização: a compra fica disponível na versão completa do projeto.</p>
+              <div className="flex flex-col gap-2">
+                <LocalBuyButton game={toLite(game)} className="btn btn-primary w-full" label={game.final_price_cents === 0 ? "Obter grátis" : "Comprar agora"} />
+                <LocalCartButton game={toLite(game)} />
+                <LocalWishButton gameId={game.id} />
               </div>
             ) : owned ? (
               <Link href="/biblioteca" className="btn btn-primary w-full">Está na sua biblioteca</Link>

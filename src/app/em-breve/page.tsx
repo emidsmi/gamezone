@@ -20,8 +20,7 @@ export default async function ComingSoonPage({ searchParams }: { searchParams: P
       <p className="text-sm font-bold uppercase tracking-widest text-gold">Entrega parcial</p>
       <h1 className="mt-2 text-3xl font-black">{name} faz parte da versão completa</h1>
       <p className="mt-3 text-muted">
-        Esta pré-visualização mostra o visual da loja: home, catálogo com filtros e páginas dos jogos. Conta, carrinho, pagamento, biblioteca e painel
-        administrativo já estão implementados no código e dependem do banco de dados (Supabase), que será conectado na próxima etapa.
+        Nesta versão publicada a loja funciona de ponta a ponta no navegador: home, catálogo, carrinho, pagamento simulado, biblioteca com chave e pedidos. Contas de usuário e o painel administrativo já estão implementados no código e dependem do banco de dados (Supabase), que será conectado na próxima etapa.
       </p>
       <div className="mt-6 flex flex-col justify-center gap-2 sm:flex-row">
         <Link href="/" className="btn btn-primary">Voltar à loja</Link>

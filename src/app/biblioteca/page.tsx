@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { LocalLibrary } from "@/components/local/LocalShop";
 import Link from "next/link";
 import { requireUser } from "@/data/auth";
 import { getLibrary } from "@/data/user-data";
@@ -9,6 +11,7 @@ import { KeyReveal } from "@/components/KeyReveal";
 export const metadata: Metadata = { title: "Minha biblioteca" };
 
 export default async function LibraryPage() {
+  if (isStaticMode()) return <LocalLibrary />;
   await requireUser("/biblioteca");
   const items = await getLibrary();
 

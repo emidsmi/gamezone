@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { staticLiteGames } from "@/data/static";
+import { LocalWishlist } from "@/components/local/LocalShop";
 import Link from "next/link";
 import { requireUser } from "@/data/auth";
 import { getUserFlags, getWishlistGames } from "@/data/user-data";
@@ -7,6 +10,7 @@ import { GameCard } from "@/components/GameCard";
 export const metadata: Metadata = { title: "Lista de desejos" };
 
 export default async function WishlistPage() {
+  if (isStaticMode()) return <LocalWishlist all={staticLiteGames()} />;
   await requireUser("/desejos");
   const [games, flags] = await Promise.all([getWishlistGames(), getUserFlags()]);
 

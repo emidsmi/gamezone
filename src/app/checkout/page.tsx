@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { staticLiteGames } from "@/data/static";
+import { LocalCheckout } from "@/components/local/LocalShop";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/data/auth";
 import { getCartGames } from "@/data/user-data";
@@ -9,6 +12,7 @@ import { CheckoutForm } from "@/components/CheckoutForm";
 export const metadata: Metadata = { title: "Pagamento" };
 
 export default async function CheckoutPage() {
+  if (isStaticMode()) return <LocalCheckout all={staticLiteGames()} />;
   await requireUser("/checkout");
   const games = await getCartGames();
   if (!games.length) redirect("/carrinho");

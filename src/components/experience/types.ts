@@ -5,6 +5,7 @@ export type ExperienceGame = {
   title: string;
   short_description: string;
   category_name: string;
+  studio: string;
   tag_names: string[];
   age_rating: number;
   price_cents: number;

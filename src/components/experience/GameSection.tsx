@@ -5,6 +5,8 @@ import { addToCart } from "@/actions/shop";
 import { ageLabel } from "@/lib/format";
 import { mediaUrl } from "@/lib/media";
 import { PriceTag } from "@/components/PriceTag";
+import { toLite } from "@/lib/lite";
+import { LocalBuyButton } from "@/components/local/LocalShop";
 import type { ExperienceGame } from "./types";
 
 type Props = {
@@ -62,7 +64,7 @@ export function GameSection({ game, index, total, variant, active, sceneReady, s
         <PriceTag game={game} size="lg" />
         <div className="flex flex-wrap items-center gap-3">
           {staticMode ? (
-            <Link href={`/jogo/${game.slug}`} className="btn btn-primary !px-8 !py-3 !text-base shadow-[0_8px_30px_-8px_#a3e635aa]">COMPRAR</Link>
+            <LocalBuyButton game={toLite(game)} className="btn btn-primary !px-8 !py-3 !text-base shadow-[0_8px_30px_-8px_#a3e635aa]" />
           ) : game.owned ? (
             <Link href="/biblioteca" className="btn btn-primary !px-8 !py-3 !text-base">Na sua biblioteca</Link>
           ) : (

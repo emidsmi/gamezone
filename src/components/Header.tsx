@@ -6,6 +6,7 @@ import { isDemoMode } from "@/lib/demo";
 import { isStaticMode } from "@/lib/static-mode";
 import { Logo } from "@/components/Logo";
 import { DemoSwitch } from "@/components/DemoSwitch";
+import { LocalHeaderCounts } from "@/components/local/LocalShop";
 
 const NAV = [
   { href: "/", label: "Início" },
@@ -39,8 +40,9 @@ export async function Header() {
         </form>
 
         <div className="ml-auto flex items-center gap-1 md:ml-0">
-          {staticMode && <span className="hidden rounded-full border border-gold/50 bg-gold/10 px-3 py-1 text-xs font-bold text-gold sm:inline">Pré-visualização</span>}
           {demo && <DemoSwitch isAdmin={isAdmin} />}
+          {staticMode ? <LocalHeaderCounts /> : (
+            <>
           <Link href="/desejos" className="relative rounded-lg px-2.5 py-2 hover:bg-panel2" aria-label={`Lista de desejos${flags.wishlist.length ? `, ${flags.wishlist.length} itens` : ""}`}>
             <span aria-hidden="true">♡</span>
           </Link>
@@ -51,7 +53,9 @@ export async function Header() {
             )}
           </Link>
 
-          {user ? (
+            </>
+          )}
+          {staticMode ? null : user ? (
             <details className="relative">
               <summary className="flex cursor-pointer list-none items-center gap-2 rounded-lg px-2.5 py-2 text-sm font-semibold hover:bg-panel2">
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-brand text-sm font-black text-black" aria-hidden="true">{user.profile.display_name.charAt(0).toUpperCase()}</span>

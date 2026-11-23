@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { isStaticMode } from "@/lib/static-mode";
+import { staticLiteGames } from "@/data/static";
+import { LocalCart } from "@/components/local/LocalShop";
 import Link from "next/link";
 import { getCartGames } from "@/data/user-data";
 import { removeFromCart } from "@/actions/shop";
@@ -10,6 +13,7 @@ import { PriceTag } from "@/components/PriceTag";
 export const metadata: Metadata = { title: "Carrinho" };
 
 export default async function CartPage() {
+  if (isStaticMode()) return <LocalCart all={staticLiteGames()} />;
   const games = await getCartGames();
   const totals = cartTotals(games);
 
